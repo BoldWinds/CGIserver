@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75d4f9d4-01e6-46f8-ba68-29100cf29d66" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/webroot/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webroot/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/bit/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/bit/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +37,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -41,7 +45,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.edu.bit.Main" />
       <module name="CGI" />
-      <option name="PROGRAM_PARAMETERS" value="-root webroot " />
+      <option name="PROGRAM_PARAMETERS" value="webroot " />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="cn.edu.bit.*" />
@@ -67,7 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1684983406125</updated>
       <workItem from="1684983407509" duration="81000" />
-      <workItem from="1684983626075" duration="1035000" />
+      <workItem from="1684983626075" duration="3015000" />
     </task>
     <servers />
   </component>
