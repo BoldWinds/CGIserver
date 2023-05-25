@@ -28,12 +28,10 @@ public class WebServer{
     public void listen() {
         try{
             while(true){
-                RequestHandler requestHandler = new RequestHandler(serverSocket.accept());
-                threadPool.execute(requestHandler);
+                threadPool.execute(new RequestHandler(serverSocket.accept(),rootPath));
             }
         }catch (IOException e){
             e.printStackTrace();
-            //serverSocket.close();
         }
 
     }

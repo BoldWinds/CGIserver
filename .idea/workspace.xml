@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75d4f9d4-01e6-46f8-ba68-29100cf29d66" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/bit/Logger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/bit/RequestHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/bit/ResponseBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/bit/WebServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/bit/HttpRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/bit/HttpResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/bit/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/bit/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/bit/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/bit/RequestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/bit/WebServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/bit/WebServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +79,7 @@
       <option name="presentableId" value="Default" />
       <updated>1684983406125</updated>
       <workItem from="1684983407509" duration="81000" />
-      <workItem from="1684983626075" duration="7452000" />
+      <workItem from="1684983626075" duration="16202000" />
     </task>
     <servers />
   </component>
