@@ -25,6 +25,8 @@ public class Main {
                     break;
             }
         }
+        Logger logger = Logger.getInstance(rootPath);
+        logger.log("Service Start!");
         // 启动服务器
         try{
             WebServer webServer = new WebServer(port,poolSize,rootPath);

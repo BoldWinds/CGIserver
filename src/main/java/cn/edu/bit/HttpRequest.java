@@ -22,9 +22,11 @@ public class HttpRequest {
 
     private String contentType;
 
+    private int contentLength;
+
     private String boundary;
 
-    private String contentLength;
+    private String body;
 
     public HttpRequest() {
     }
@@ -61,9 +63,10 @@ public class HttpRequest {
                 break;
             case "Content-Type:":
                 this.contentType = requestLine.split(" ")[1];
+                this.boundary = requestLine.split("boundary=")[1];
                 break;
             case "Content-Length:":
-                this.contentLength = requestLine.split(" ")[1];
+                this.contentLength = Integer.parseInt(requestLine.split(" ")[1]);
                 break;
             default:
                 return;
@@ -128,11 +131,27 @@ public class HttpRequest {
         this.contentType = contentType;
     }
 
+    public int getContentLength() {
+        return contentLength;
+    }
+
+    public void setContentLength(int contentLength) {
+        this.contentLength = contentLength;
+    }
+
     public String getBoundary() {
         return boundary;
     }
 
     public void setBoundary(String boundary) {
         this.boundary = boundary;
+    }
+
+    public String getBody(){
+        return body;
+    }
+
+    public void setBody(String body){
+        this.body = body;
     }
 }
