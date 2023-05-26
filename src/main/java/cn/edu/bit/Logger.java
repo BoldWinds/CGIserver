@@ -32,12 +32,16 @@ public class Logger {
         this.logPath = rootPath+"/log/log.txt";
     }
 
+    /**
+     * 记录请求日志
+     * @param log
+     */
     public void log(String log){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(logPath, true));
             StringBuilder sb = new StringBuilder();
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            sb.append(timestamp).append(" - ").append(log);
+            sb.append("[").append(timestamp).append("]  ").append(log);
 
             // 将日志写入并关闭流
             writer.write(sb.toString());
@@ -48,25 +52,14 @@ public class Logger {
         }
     }
 
+    /**
+     * 记录请求日志
+     * @param request
+     */
     public void log(HttpRequest request){
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(logPath, true));
-            StringBuilder sb = new StringBuilder();
-            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            sb.append("[").append(timestamp).append("]  ")
-                    .append("\"").append(request.getMethod()).append(" ").append(request.getUrl()).append(" ").append(request.getVersion()).append("\"")
-                    .append("  \"").append(request.getUserAgent()).append("\"");
-
-            // 将日志写入并关闭流
-            writer.write(sb.toString());
-            writer.newLine();
-            writer.close();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setPath(String rootPath){
-        this.logPath = rootPath+"/log/log.txt";
+        StringBuilder sb = new StringBuilder();
+        sb.append("\"").append(request.getMethod()).append(" ").append(request.getUrl()).append(" ").append(request.getVersion()).append("\"")
+                .append("  \"").append(request.getUserAgent()).append("\"");
+        log(sb.toString());
     }
 }

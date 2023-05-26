@@ -20,14 +20,10 @@ public class ResponseBuilder {
      * @return response
      */
     public String build() {
-        StringBuilder sb = new StringBuilder("HTTP/1.1 200 OK\r\n" +
-                                            "Content-Type: text/html\r\n" +
-                                            "\r\n");
-        return   switch (request.getMethod()){
+        return switch (request.getMethod()){
             case GET -> buildGetResponse().toString();
-            case POST-> buildPostResponse().toString();
-            // TODO HEAD
-            case HEAD -> new HttpResponse(200,"OK",new File(rootPath+"/index.html")).toString();
+            case POST -> buildPostResponse().toString();
+            case HEAD -> buildHeadResponse().toString();
         };
     }
 
@@ -61,6 +57,7 @@ public class ResponseBuilder {
         String filePath = rootPath+url;
         File file = new File(filePath);
         HttpResponse httpResponse;
+
         if(file.exists()){
             if (url.endsWith("calculator.py") || url.endsWith("query.py")) {
                 httpResponse =  new HttpResponse(200, "OK", file);
@@ -73,6 +70,28 @@ public class ResponseBuilder {
             httpResponse = new HttpResponse(404,"Not Found",new File(rootPath+"/404.html"));
             httpResponse.staticWeb();
         }
+        return httpResponse;
+    }
+
+    /**
+     * Build the response for HEAD method
+     * @return response
+     */
+    private HttpResponse buildHeadResponse(){
+        String url = request.getUrl();
+        if(url.equals("/")){
+            url = "/index.html";
+        }
+        String filePath = rootPath+url;
+        File file = new File(filePath);
+        HttpResponse httpResponse;
+        if(file.exists()){
+            // 通过不设置content的方法来实现对head请求的响应
+            httpResponse = new HttpResponse(200,"OK",file);
+        }else{
+            httpResponse = new HttpResponse(404,"Not Found",new File(rootPath+"/404.html"));
+        }
+        httpResponse.staticWeb();
         return httpResponse;
     }
 
@@ -92,9 +111,6 @@ public class ResponseBuilder {
                 args.add(lines[i+3]);
             }
         }
-
         return args.toArray(new String[0]);
     }
-
-
 }

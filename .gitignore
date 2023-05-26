@@ -63,3 +63,5 @@ build/
 ### Mac OS ###
 .DS_Store
 >>>>>>> 9586ed3 (init)
+.idea
+log.txt

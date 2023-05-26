@@ -36,10 +36,10 @@ public class HttpResponse {
     }
 
     /**
-     * 调用.pl脚本生成html
+     * 调用python脚本生成html
+     * @param args 脚本参数
      */
     public void dynamicWeb(String[] args){
-        // TODO calculate  query
         try{
             ProcessBuilder processBuilder;
             System.out.println(file.getPath());
@@ -62,22 +62,26 @@ public class HttpResponse {
             // 等待进程执行完毕
             int exitCode = process.waitFor();
             if (exitCode == 0) {
-                System.out.println("脚本执行成功，结果为: " + output);
+                // 脚本执行成功
+                this.content = output.toString();
             } else {
-                System.out.println("脚本执行失败");
+                // 脚本执行失败
+                this.content = "Error";
             }
-            this.content = output.toString();
+
         }catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("HTTP/1.1 ").append(statusCode).append(" ").append(statusMessage).append("\r\n").append("Content-Type: text/html\r\n").append("\r\n").append(content);
+        if (this.content != null){
+            sb.append("HTTP/1.1 ").append(statusCode).append(" ").append(statusMessage).append("\r\n").append("Content-Type: text/html\r\n").append("\r\n").append(content);
+        }else {
+            sb.append("HTTP/1.1 ").append(statusCode).append(" ").append(statusMessage).append("\r\n").append("Content-Type: text/html\r\n").append("\r\n");
+        }
         return sb.toString();
     }
 }

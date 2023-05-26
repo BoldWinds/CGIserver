@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        // default values
+        // 默认值
         String rootPath = "webroot";
         int port = 8888;
         int poolSize = 10;
@@ -34,7 +34,5 @@ public class Main {
         }catch (IOException e){
             e.printStackTrace();
         }
-
-
     }
 }

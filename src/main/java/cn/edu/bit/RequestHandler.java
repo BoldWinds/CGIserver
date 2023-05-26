@@ -16,7 +16,6 @@ public class RequestHandler implements Runnable{
 
     @Override
     public void run() {
-        //System.out.println("I get a request!");
         try {
             // 创建输入输出流
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
