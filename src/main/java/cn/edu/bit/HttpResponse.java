@@ -43,12 +43,11 @@ public class HttpResponse {
         try{
             ProcessBuilder processBuilder;
             System.out.println(file.getPath());
-            if(file.getName().equals("calculator.pl")){
-                // 构建Perl命令
-                processBuilder = new ProcessBuilder("perl", file.getPath(), args[0], args[1]);
-            }else {
-                // 构建Perl命令
-                processBuilder = new ProcessBuilder("perl", file.getPath(), args[0]);
+            if(file.getName().equals("calculator.py")){
+                processBuilder = new ProcessBuilder("python3", file.getPath(), args[0], args[1]);
+            } else {
+                System.out.println(args[0]);
+                processBuilder = new ProcessBuilder("python3", file.getPath(), args[0]);
             }
             // 启动进程
             Process process = processBuilder.start();

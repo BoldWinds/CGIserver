@@ -62,7 +62,7 @@ public class ResponseBuilder {
         File file = new File(filePath);
         HttpResponse httpResponse;
         if(file.exists()){
-            if (url.endsWith("calculator.pl") || url.endsWith("query.pl")) {
+            if (url.endsWith("calculator.py") || url.endsWith("query.py")) {
                 httpResponse =  new HttpResponse(200, "OK", file);
                 httpResponse.dynamicWeb(extractArg());
             } else {

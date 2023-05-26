@@ -46,14 +46,10 @@ public class RequestHandler implements Runnable{
      * @throws IOException
      */
     private HttpRequest getRequest(BufferedReader in) throws IOException {
-        // TODO 测试完成之后删除request
         HttpRequest httpRequest = new HttpRequest();
-        StringBuilder request = new StringBuilder("");
         String line;
         while ((line = in.readLine()) != null && !line.isEmpty()) {
             httpRequest.parse(line);
-            // TODO delete
-            request.append(line).append("\n");
         }
 
         // 读取请求主体部分
@@ -66,9 +62,7 @@ public class RequestHandler implements Runnable{
                 sb.append(bodyBuffer, 0, bytesRead);
             }
             httpRequest.setBody(sb.toString());
-            request.append(sb.toString());
         }
-        //System.out.println(request);
         return httpRequest;
     }
 
