@@ -32,16 +32,10 @@ public class ResponseBuilder {
      * @return response
      */
     private HttpResponse buildGetResponse(){
-        String url = request.getUrl();
-        if(url.equals("/")){
-            url = "/index.html";
-        }
-        String filePath = rootPath+url;
-        File file = new File(filePath);
         HttpResponse httpResponse;
-        if(file.exists()){
-            httpResponse = new HttpResponse(200,"OK",file);
-        }else{
+        if (isFound()){
+            httpResponse = new HttpResponse(200,"OK",new File(rootPath+request.getUrl()));
+        }else {
             httpResponse = new HttpResponse(404,"Not Found",new File(rootPath+"/404.html"));
         }
         httpResponse.staticWeb();
@@ -53,23 +47,15 @@ public class ResponseBuilder {
      * @return response
      */
     private HttpResponse buildPostResponse(){
-        String url = request.getUrl();
-        String filePath = rootPath+url;
-        File file = new File(filePath);
         HttpResponse httpResponse;
-
-        if(file.exists()){
-            if (url.endsWith("calculator.py") || url.endsWith("query.py")) {
-                httpResponse =  new HttpResponse(200, "OK", file);
-                httpResponse.dynamicWeb(extractArg());
-            } else {
-                httpResponse = new HttpResponse(404,"Not Found",new File(rootPath+"/404.html"));
-                httpResponse.staticWeb();
-            }
+        if (isFound()){
+            httpResponse =  new HttpResponse(200, "OK", new File(rootPath+request.getUrl()));
+            httpResponse.dynamicWeb(extractArg());
         }else{
             httpResponse = new HttpResponse(404,"Not Found",new File(rootPath+"/404.html"));
             httpResponse.staticWeb();
         }
+
         return httpResponse;
     }
 
@@ -78,21 +64,29 @@ public class ResponseBuilder {
      * @return response
      */
     private HttpResponse buildHeadResponse(){
-        String url = request.getUrl();
-        if(url.equals("/")){
-            url = "/index.html";
-        }
-        String filePath = rootPath+url;
-        File file = new File(filePath);
         HttpResponse httpResponse;
-        if(file.exists()){
+        if(isFound()){
             // 通过不设置content的方法来实现对head请求的响应
-            httpResponse = new HttpResponse(200,"OK",file);
+            httpResponse = new HttpResponse(200,"OK",new File(rootPath+request.getUrl()));
         }else{
             httpResponse = new HttpResponse(404,"Not Found",new File(rootPath+"/404.html"));
+            httpResponse.staticWeb();
         }
-        httpResponse.staticWeb();
         return httpResponse;
+    }
+
+    /**
+     * Check if the file exists
+     * @return true if the file exists
+     */
+    private boolean isFound(){
+        if(request.getUrl().equals("/")){
+            request.setUrl("/index.html");
+        }
+        String url = request.getUrl();
+        String filePath = rootPath+url;
+        File file = new File(filePath);
+        return file.exists();
     }
 
     /**
